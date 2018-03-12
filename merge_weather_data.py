@@ -19,7 +19,7 @@ def main():
     pattern = '^\d{8}_[a-zA-Z]{4}.json$'
 
     fieldnames = get_fieldnames(directory, pattern)
-    filenames = get_matching_filenames(directory, pattern)
+    filenames = sorted(get_matching_filenames(directory, pattern))
 
     with open(output_fname, 'wt', newline='') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames, lineterminator='\n')

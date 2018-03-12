@@ -1,10 +1,10 @@
 # Data
 
-Data for this project is stored on Drive.
+Data for this project are stored on Google Drive.
 
 ## Journey Data
 
-Cycle hire data is made available by Transport for London. The data are provided
+Cycle hire data are published by Transport for London. The data are provided
 in CSV files, each containing one week worth of data. These files are available
 in a *tarball* (.tar.gz) [here](https://drive.google.com/open?id=1GZtYqej5tEDnQj3g5qB_fmy_k76YFseC).
 The archive is approximately 1.2 GB uncompressed.
@@ -25,5 +25,14 @@ The archive is approximately 1 MB uncompressed.
 
 These files were also merged and are provided below in CSV and SQLite format:
 
-* CSV file: [weather.csv](https://drive.google.com/open?id=17UFB1iLIPqlGEfqMQtRXDoNtbabta9CZ) [873 KB]
+* CSV file: [weather.csv](https://drive.google.com/open?id=1e1U3Mcowvsnp6-rZCODJ-PVZsda0xihA) [873 KB]
 * SQLite file: [weather.db](https://drive.google.com/open?id=1ptnDBUt3u3Q7CYrBd4TvU8bIr1pASdKw) [872 KB]
+
+
+## Bikepoints
+
+Data relating to the stations (or "bikepoints") for London cycles was retrieved
+using the Transport for London Unified API.
+
+* Original JSON file: [bikepoints.json](https://drive.google.com/open?id=1_iKp8HZWQiWJPZius9ZcGVynM-Q1h2U9) [1.8 MB]
+* Preprocessed CSV file: [bikepoints.csv](https://drive.google.com/open?id=1IRawKHUsyEfPtUG_gQzpnF4kTeM79pMo) [52 KB]
