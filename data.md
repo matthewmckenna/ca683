@@ -15,6 +15,14 @@ SQLite format:
 * Gzipped CSV file: [journey.csv.gz](https://drive.google.com/open?id=1HSnVe74BsBfvsX1B2tyv60O9O-lAaJV-) [242 MB]
 * Gzipped SQLite file: [journey.db.gz](https://drive.google.com/open?id=1hTPquBMo_sp0VZQAWh5shmFNNjDAjs_o) [327 MB]
 
+A stratified random sample of the journey dataset was created to speed up the
+initial analysis. The main criterion was that there be an equal number of
+observations from each month of the year. The number of observations per month
+was chosen to be 10,000, resulting in a dataset of 120,000 total observations.
+This data is available in CSV format and is 10 MB uncompressed.
+
+* Gzipped CSV file: [sampled_journey_10k_pm.csv.gz](sampled_journey_10k_pm.csv) [3 MB]
+
 ## Weather Data
 
 Hourly weather data was retrieved from the Weather Underground API. The data was
