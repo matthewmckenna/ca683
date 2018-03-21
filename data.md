@@ -44,3 +44,14 @@ using the Transport for London Unified API.
 
 * Original JSON file: [bikepoints.json](https://drive.google.com/open?id=1_iKp8HZWQiWJPZius9ZcGVynM-Q1h2U9) [1.8 MB]
 * Preprocessed CSV file: [bikepoints.csv](https://drive.google.com/open?id=1IRawKHUsyEfPtUG_gQzpnF4kTeM79pMo) [52 KB]
+
+An updated bikpoints dataset was retrieved which contained previously missing
+data for stations `47` and `411`. This dataset is missing data for station `527`
+which was previously available.
+
+* Updated JSON file: [bikepoints2.json](https://drive.google.com/open?id=1ApzPZmw8FEhB9GEO8Zbm4MCGI37mW4mi) [2 MB]
+
+A superset of the two bikepoints JSON files is available below, with data for
+`784` stations.
+
+* CSV superset of stations: [bp.csv](https://drive.google.com/open?id=1v8IAS5724AaLi1XirWD-r8tJds44qPaS) [52 KB]

@@ -29,25 +29,24 @@ KEY_MAP = {
 def main():
     """main entry point"""
     # TODO: a little bit messy, but works for now
-    output_path = os.path.abspath(args.output)
-    filename = f'{output_path}.json'
+    filepath = os.path.join(os.path.abspath(args.directory), args.filename)
 
     # transport for london unified api
     url = 'https://api.tfl.gov.uk/BikePoint'
     r = requests.get(url)
 
     # get the data if it does not exist
-    if not os.path.isfile(filename):
+    if not os.path.isfile(filepath):
         bikepoints = r.json()
-        with open(filename, 'wt', encoding='utf-8') as f:
+        with open(filepath, 'wt', encoding='utf-8') as f:
             json.dump(bikepoints, f)
     else:
-        with open(filename, 'rt') as f:
+        with open(filepath, 'rt') as f:
             bikepoints = json.load(f)
 
     data = extract_station_info(bikepoints)
 
-    create_csv(data, filename=f'{output_path}.csv')
+    create_csv(data, filename=f'{os.path.splitext(filepath)[0]}.csv')
 
 
 def create_csv(data: defaultdict, filename: str):
@@ -105,6 +104,7 @@ if __name__ == '__main__':
         description='get London bike stations and extract useful information',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
-    parser.add_argument('-o', '--output', help='output base filename', default='bikepoints')
+    parser.add_argument('-d', '--directory', help='input and output directory', default='.')
+    parser.add_argument('-f', '--filename', help='output filename', default='bikepoints.json')
     args = parser.parse_args()
     main()
