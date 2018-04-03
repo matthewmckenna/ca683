@@ -21,7 +21,7 @@ observations from each month of the year. The number of observations per month
 was chosen to be 10,000, resulting in a dataset of 120,000 total observations.
 This data is available in CSV format and is 10 MB uncompressed.
 
-* Gzipped CSV file: [sampled_journey_10k_pm.csv.gz](sampled_journey_10k_pm.csv) [3 MB]
+* Gzipped CSV file: [sampled_journey_10k_pm.csv.gz](https://drive.google.com/file/d/1CPpFetJcbO2P0H5gyxMuPt3jyPyo0aWu/view?usp=sharing) [3 MB]
 
 ## Weather Data
 
