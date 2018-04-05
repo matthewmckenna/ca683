@@ -7,6 +7,30 @@ import os
 import re
 from typing import Dict, Generator, List
 
+CONDITIONS = {
+    'clear': {'clear', 'mist', 'haze'},
+    'cloudy': {'mostly_cloudy', 'overcast', 'partly_cloudy', 'scattered_clouds'},
+    'fog': {'fog', 'patches_of_fog', 'light_freezing_fog'},
+    'hail_snow_storm': {
+        'hail',
+        'hail_showers',
+        'light_ice_pellets',
+        'light_snow',
+        'light_thunderstorms_and_rain',
+        'snow_grains',
+        'thunderstorm',
+        'thunderstorms_and_rain',
+    },
+    'rain': {
+        'drizzle',
+        'heavy_rain',
+        'light_drizzle',
+        'light_rain',
+        'light_rain_showers',
+        'rain',
+    },
+}
+
 
 def main():
     """main entry point"""
@@ -71,15 +95,22 @@ def parse_json_dict(fname: str, *, header: bool = False) -> Generator[Dict[str, 
 
     d: Dict[str, str] = {}
 
+    # reverse the `CONDITIONS` lookup
+    conditions = {v: key for key, value in CONDITIONS.items() for v in value}
+
     for o in data['history']['observations']:
-        d['date'] = f"{o['date']['year']}-{o['date']['mon']}-{o['date']['mday']}"
-        d['time'] = f"{o['date']['hour']}:{o['date']['min']}"
-        d['temperature'] = o['tempm']  # in degrees Celsius
-        d['humidity'] = o['hum']  # % humidity
+        # d['date'] = f"{o['date']['year']}-{o['date']['mon']}-{o['date']['mday']}"
+        # d['time'] = f"{o['date']['hour']}:{o['date']['min']}"
+        d['datetime'] = get_datetime(o['date'])
+        d['temperature'] = o['tempm'] if o['tempm'] != '-9999' else ''  # in degrees Celsius
+        d['humidity'] = o['hum'] if o['hum'] != 'N/A' else '' # % humidity
         d['wind_speed'] = o['wspdm']  # in kph
-        d['precipitation'] = o['precipm'] if o['precipm'] != '-9999.00' else '0.0'  # in mm
+        # d['precipitation'] = o['precipm'] if o['precipm'] != '-9999.00' else '0.0'  # in mm
         condition = o['conds'].replace(' ', '_').lower()
-        d['condition'] = condition if condition != 'unknown' else ''
+        # d['condition'] = condition if condition != 'unknown' else ''
+
+        d['condition'] = conditions[condition] if condition != 'unknown' else ''
+
         d['fog'] = o['fog']
         d['rain'] = o['rain']
         d['snow'] = o['snow']
@@ -91,6 +122,11 @@ def parse_json_dict(fname: str, *, header: bool = False) -> Generator[Dict[str, 
         if header:
             # only looking for header so just return one record
             return
+
+
+def get_datetime(o: Dict[str, str]) -> str:
+    """Return a datetime string from the observation dict `o`."""
+    return f"{o['year']}-{o['mon']}-{o['mday']} {o['hour']}:{o['min']}"
 
 
 if __name__ == '__main__':

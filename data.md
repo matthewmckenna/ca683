@@ -36,6 +36,15 @@ These files were also merged and are provided below in CSV and SQLite format:
 * CSV file: [weather.csv](https://drive.google.com/open?id=1e1U3Mcowvsnp6-rZCODJ-PVZsda0xihA) [873 KB]
 * SQLite file: [weather.db](https://drive.google.com/open?id=1ptnDBUt3u3Q7CYrBd4TvU8bIr1pASdKw) [872 KB]
 
+The weather dataset has been updated with the following changes:
+
+1. `date` and `time` fields have been merged into a single `datetime` field.
+2. `precipitation` field has been dropped.
+3. `condition` field has been grouped, and reduced from `25` to `5` cateogries.
+
+* CSV file: [weather_02.csv](https://drive.google.com/open?id=1YVUpEovKr7Of05koUy1vrVPPzToHl5_T) [753 KB]
+
+For a list of the `condition` field groupings please see the project notes document.
 
 ## Bikepoints
 
