@@ -5,14 +5,14 @@ args = commandArgs(trailingOnly = TRUE)
 library(readr)
 library(lubridate)
 
-if (length(args) == 0) {
-    stop("you must supply the data_dir argument", call. = FALSE)
+if (length(args) != 2) {
+    stop("you must supply the input and output filenames", call. = FALSE)
 }
 # set the input and output data directory
-data_dir <- args[1]
+input_file <- args[1]
+output_file <- args[2]
 
 # read raw data -------------------------------------------------------------
-input_file <- paste(data_dir, "journey.csv", sep = "/")
 df <- read_csv(input_file)
 # replace spaces in column names with periods
 colnames(df) <- make.names(colnames(df), unique = TRUE)
@@ -42,6 +42,15 @@ df$End.Date <- NULL
 df$StartStation.Name <- NULL
 df$EndStation.Name <- NULL
 
+# update the column names ----------------------------------------------------
+colnames(df) <- c(
+  "rental_id",
+  "duration",
+  "bike_id",
+  "end_station_id",
+  "start_station_id",
+  colnames(df)[6:15]
+)
+
 # save the cleaned file ------------------------------------------------------
-output_file <- paste(data_dir, "journey_clean01.csv", sep = "/")
 write_csv(df, path = output_file)
